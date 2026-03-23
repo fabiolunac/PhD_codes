@@ -1,12 +1,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-occ = 25
+occ = 121
 
 if occ == 25:
     data = pd.read_csv('iladata_occ25.csv')
 elif occ == 121:
-    data = pd.read_csv('iladata_occ25.csv')
+    data = pd.read_csv('iladata_occ121.csv')
 
 
 pedestal_in           = pd.to_numeric(data['pedestal_in_reg[12:0]'] , errors='coerce')
@@ -34,6 +34,7 @@ plt.plot(adc_signal.values[xlim1:xlim2], drawstyle='steps-post', label="ADC Sign
 plt.xlabel("Samples")
 plt.ylabel("Amplitude [ADC Counts]")
 plt.legend()
+plt.title('Shaper')
 plt.grid()
 
 # ADC + PZC + Pedestals
@@ -45,6 +46,7 @@ plt.plot(pedestal_compensation.values[xlim1:xlim2], drawstyle='steps-post', labe
 plt.xlabel("Samples")
 plt.ylabel("Amplitude [ADC Counts]")
 plt.legend()
+plt.title('PZC')
 plt.grid()
 
 # Wiener normal
@@ -64,5 +66,6 @@ plt.xlabel("Samples")
 plt.ylabel("Amplitude [ADC Counts]")
 plt.legend()
 plt.grid()
+plt.title('Energy Reconstruction')
 
 plt.show()
